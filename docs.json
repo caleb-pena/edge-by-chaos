@@ -95,6 +95,10 @@
   "background": {
     "decoration": "gradient"
   },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  },
   "navbar": {
     "links": [
       {
