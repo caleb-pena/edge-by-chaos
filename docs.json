@@ -92,6 +92,9 @@
     "light": "/logo/edge-light.png",
     "dark": "/logo/edge-dark.png"
   },
+  "background": {
+    "decoration": "gradient"
+  },
   "navbar": {
     "links": [
       {
