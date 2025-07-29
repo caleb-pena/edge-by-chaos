@@ -3,29 +3,37 @@ title: "Home"
 mode: "custom"
 ---
 
-<div className="relative w-full flex items-center justify-center" style={{ height: '20rem', overflow: 'hidden'}}>
-<div className="absolute inset-0 bg-primary dark:bg-primary-light" style={{opacity: 0.05 }}></div>
+<div className="relative w-full flex items-center justify-center" style={{ height: '20rem', overflow: 'hidden' }}>
+  <div
+    className="absolute inset-0 bg-cover bg-right"
+    style={{
+      backgroundImage: "url('/images/banner.png')",
+    }}
+  ></div>
+
   <div style={{ position: 'absolute', textAlign: 'center', padding: '0 1rem' }}>
     <div
       className="text-gray-900 dark:text-gray-100"
       style={{
-       fontWeight: '600',
-       fontSize: '2.5rem',
-       margin: '0'
+        fontWeight: '600',
+        fontSize: '2.5rem',
+        margin: '0',
       }}
     >
       Welcome to Edge
     </div>
-    <div className="flex items-center justify-center" style={{maxWidth: '45rem',}}>
-    <p className="mt-2">Edge by Chaos Labs represents a breakthrough in delivering secure, accurate, and real-time market data with integrated risk management for decentralized finance protocols.</p>
+    <div className="flex items-center justify-center" style={{ maxWidth: '45rem' }}>
+      <p className="mt-2 text-gray-900 dark:text-gray-100">
+        Edge by Chaos Labs represents a breakthrough in delivering secure, accurate, and real-time market data with integrated risk management for decentralized finance protocols.
+      </p>
     </div>
     <div className="flex items-center justify-center">
       <a
         className="flex items-center justify-center rounded-full text-white pl-4 pr-5 py-2.5 font-medium"
         style={{
           background: 'linear-gradient(#50a306, #a1e337)',
-         marginTop: '2rem',
-         maxWidth: '28rem',
+          marginTop: '2rem',
+          maxWidth: '28rem',
         }}
         href="/getting-started/node-operators"
       >
@@ -36,7 +44,7 @@ mode: "custom"
 </div>
 
 <div
-  style={{marginTop: '2rem', marginBottom: '8rem', maxWidth: '70rem', marginLeft: 'auto',
+  style={{marginTop: '3rem', maxWidth: '70rem', marginLeft: 'auto',
   marginRight: 'auto', paddingLeft: '1.25rem',
   paddingRight: '1.25rem' }}
 >
@@ -46,34 +54,108 @@ mode: "custom"
     textAlign: 'center',
     fontSize: '24px',
     fontWeight: '600',
-    marginBottom: '3rem',
+    marginBottom: '2rem',
     }}
   >
-    Jump right in
+    PULL ORACLES
   </div>
 
   <h2 className="text-gray-900 dark:text-gray-200" style={{marginTop: '2rem', marginBottom: '2rem', fontWeight: '500'}} />
 
-  <CardGroup cols={3}>
-  <div className="transition-transform duration-300 transform hover:-translate-y-2 hover:scale-102 hover:shadow-xl">
-    <Card title="API Specification" img="/images/64f4b849-image.jpeg" href="/pull-oracles/rest-api" arrow={false} />
+  <CardGroup cols={4} className="grid items-stretch gap-4">
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="System Architecture" icon="sitemap" href="/pull-oracles/publish-your-docs" arrow={false}>
+      Decentralized system for real-time market data delivery 
+    </Card>
   </div>
-  <div className="transition-transform duration-300 transform hover:-translate-y-2 hover:scale-102 hover:shadow-xl">
-    <Card title="System Architecture" img="/images/64f4b849-image.jpeg" href="/pull-oracles/publish-your-docs" arrow={false} />
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="Authentication" icon="user" href="/pull-oracles/authentication" arrow={false}>
+      Token-based API authentication for oracle data 
+    </Card>
   </div>
-  <div className="transition-transform duration-300 transform hover:-translate-y-2 hover:scale-102 hover:shadow-xl">
-    <Card title="Push Oracles" img="/images/64f4b849-image.jpeg" href="/push-oracles/overview" arrow={false} />
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="Feed IDs" icon="coins" href="/pull-oracles/feed-ids" arrow={false}>
+      Real-time, secure crypto price feeds for DeFi apps.
+    </Card>
   </div>
-  <div className="transition-transform duration-300 transform hover:-translate-y-2 hover:scale-102 hover:shadow-xl">
-    <Card title="View Pull Oracles" img="/images/08bd6d9c-image.jpeg" href="https://edgebychaos.com/price-feeds" arrow={false} />
-  </div>
-  <div className="transition-transform duration-300 transform hover:-translate-y-2 hover:scale-102 hover:shadow-xl">
-    <Card title="View Push Oracles" img="/images/48b6bfaf-image.jpeg" href="https://edgebychaos.com/price-feeds?feedType=push" arrow={false} />
-  </div>
-  <div className="transition-transform duration-300 transform hover:-translate-y-2 hover:scale-102 hover:shadow-xl">
-    <Card title="View Risk Oracles" img="/images/a3f9c3ed-image.jpeg" href="https://edgebychaos.com/risk-feeds" arrow={false} />
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="REST API" icon="webhook" href="/pull-oracles/rest-api" arrow={false}>
+      Comprehensive API reference for accessing oracle data
+    </Card>
   </div>
   </CardGroup>
 
+</div>
+
+<div
+  style={{marginTop: '3rem', maxWidth: '70rem', marginLeft: 'auto',
+  marginRight: 'auto', paddingLeft: '1.25rem',
+  paddingRight: '1.25rem' }}
+>
+  <div
+    className="text-gray-900 dark:text-gray-200"
+    style={{
+    textAlign: 'center',
+    fontSize: '24px',
+    fontWeight: '600',
+    marginBottom: '2rem',
+    }}
+  >
+    PUSH ORACLES
+  </div>
+
+  <h2 className="text-gray-900 dark:text-gray-200" style={{marginTop: '2rem', marginBottom: '2rem', fontWeight: '500'}} />
+
+  <CardGroup cols={2} className="grid items-stretch gap-4">
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="Overview" icon="circle-dollar" href="/push-oracles/overview" arrow={false}>
+      Fetch and use price data in smart contracts via a decentralized oracle
+    </Card>
+  </div>
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="Feed Addresses" icon="chart-network" href="/push-oracles/feed-addresses" arrow={false}>
+      Live Push Oracle contract addresses across networks
+    </Card>
+  </div>
+  </CardGroup>
+
+</div>
+
+<div
+  style={{marginTop: '3rem', marginBottom: '5rem', maxWidth: '70rem', marginLeft: 'auto',
+  marginRight: 'auto', paddingLeft: '1.25rem',
+  paddingRight: '1.25rem' }}
+>
+  <div
+    className="text-gray-900 dark:text-gray-200"
+    style={{
+    textAlign: 'center',
+    fontSize: '24px',
+    fontWeight: '600',
+    marginBottom: '2rem',
+    }}
+  >
+    GUIDES
+  </div>
+
+  <h2 className="text-gray-900 dark:text-gray-200" style={{marginTop: '2rem', marginBottom: '2rem', fontWeight: '500'}} />
+
+  <CardGroup cols={3} className="grid items-stretch gap-4">
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="Signature Verification" icon="cloud-check" href="/guides/signature-verification" arrow={false}>
+      Verify price data authenticity using cryptographic signatures
+    </Card>
+  </div>
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="Using an Offchain Service" icon="server" href="/guides/using-an-offchain-service" arrow={false}>
+      Build a service to fetch price data from Chaos Labs and update your smart contracts
+    </Card>
+  </div>
+  <div className="h-full">
+    <Card className="h-full flex flex-col" title="FAQs" icon="comments-question" href="/guides/faqs" arrow={false}>
+      Common questions on data updates, security, integration, and support
+    </Card>
+  </div>
+  </CardGroup>
 
 </div>
