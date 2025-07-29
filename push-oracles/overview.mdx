@@ -1,0 +1,135 @@
+---
+title: "Overview"
+---
+
+The **Edge Push Oracle** enables smart contracts to access reliable and decentralized price data using an efficient push-based mechanism. With support for multi-signature verification and an upgradable architecture, this oracle adheres to industry-standard interfaces, making it easy for projects to integrate and access data securely.
+
+This guide explains how to use the Edge Push Oracle to fetch pricing data and incorporate it into your smart contract.
+
+***
+
+#### Key Features
+
+* **Trusted Multi-Signature Verification**: Ensures data integrity by requiring majority approval from trusted oracle nodes.
+
+* **Upgradable Architecture**: Built using the UUPS proxy pattern for seamless updates.
+
+* **Familiar Interface**: Implements standard oracle functions like `latestAnswer` and `getRoundData`, compatible with widely used oracle solutions.
+
+***
+
+#### How to Use the Oracle
+
+**1. Set Up Your Environment**
+
+* Import the Edge Push Oracle contract ABI.
+
+* Identify the deployed contract address for your desired network (e.g., Ethereum mainnet, testnets).
+
+Example:
+
+```java
+eEdgePushOracle oracle = EdgePushOracle(ORACLE_CONTRACT_ADDRESS);
+```
+
+**2. Fetch the Latest Price**
+
+Use the `latestAnswer()` function to obtain the most recent price. The result will be an integer representing the price, formatted with the specified number of decimals.
+
+```java
+int256 latestPrice = oracle.latestAnswer();
+```
+
+**3. Access Historical Data**
+
+Retrieve historical price data for specific rounds using the `getRoundData` function. Each round provides a comprehensive dataset, including the price, timestamp, and block number.
+
+```
+(int256 price, uint256 reportRoundId, uint256 timestamp, uint256 blockNumber) = oracle.getRoundData(ROUND_ID);
+```
+
+**4. Monitor Updates in Real-Time**
+
+Subscribe to the `NewPriceUpdate` event to react to new price reports. This is particularly useful for applications requiring immediate responses to market changes.
+
+Event Example:
+
+```csharp
+event NewPriceUpdate(uint80 indexed roundId, int256 price, uint256 reportRoundId, uint256 timestamp, address transmitter, uint256 numSignatures);
+```
+
+***
+
+#### Example Contract Integration
+
+Here’s a basic example demonstrating how to integrate the Chaos Labs Edge Push Oracle into your smart contract:
+
+```java
+pragma solidity ^0.8.25;
+
+interface IEdgePushOracle {
+    function latestRoundData()
+        external
+        view
+        returns (
+            uint80 roundId,
+            int256 answer,
+            uint256 startedAt,
+            uint256 updatedAt,
+            uint80 answeredInRound
+        );
+    function decimals() external view returns (uint8);
+    function description() external view returns (string memory);
+}
+
+contract OracleConsumer {
+    IEdgePushOracle public oracle;
+
+    constructor(address oracleAddress) {
+        oracle = IEdgePushOracle(oracleAddress);
+    }
+
+    /**
+     * @notice Fetch the latest price data and metadata from the oracle.
+     * @return roundId The round ID of the latest price update.
+     * @return answer The latest price reported by the oracle.
+     * @return updatedAt The timestamp when the latest price was updated.
+     */
+    function getLatestPriceData()
+        external
+        view
+        returns (
+            uint80 roundId,
+            int256 answer,
+            uint256 updatedAt
+        )
+    {
+        (roundId, answer, , updatedAt, ) = oracle.latestRoundData();
+        return (roundId, answer, updatedAt);
+    }
+}
+```
+
+***
+
+#### Important Considerations
+
+**Decimals Handling**
+
+The `latestAnswer()` and `getRoundData()` functions return prices as integers. Use the `decimals` property of the oracle to format the values for display or further calculations.
+
+**Timestamp Validation**
+
+If precise timing is crucial, use the `getRoundData()` function to validate the timestamp of the data retrieved.
+
+**Real-Time Updates**
+
+Utilize the `NewPriceUpdate` event to build reactive systems that trigger actions based on price changes.
+
+***
+
+#### Learn More
+
+* **GitHub Repository**: [Chaos Labs Edge Push Oracle](https://github.com/ChaosLabsInc/edge-push-oracle)
+
+* **On-Chain Addresses**: Refer to [Feed Addresses](/push-oracles/feed-addresses)

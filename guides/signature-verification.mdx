@@ -1,0 +1,37 @@
+---
+title: "Signature Verification"
+---
+
+## Cryptographic Signatures
+
+The Edge Oracle signs each price update using the secp256k1 curve. This cryptographic signature ensures the authenticity and integrity of the price data, allowing users to verify that the information comes from a trusted source and hasn't been tampered with.
+
+## Public Key
+
+The public key used for verifying signatures from the Edge Oracle is crucial for data authenticity. The public key is not included in this general documentation to maintain security.
+
+**To Obtain the Public Key:**
+
+* Contact Chaos Labs directly through official channels to obtain the official public key.
+
+**Important:** Use only the official public key provided by Chaos Labs for signature verification.
+
+## Verification Process
+
+* Each price update includes a signature field alongside the price data.
+
+* To verify the authenticity of an update, use the official public key along with the provided signature and price data.
+
+* Proceed with using the price data only if the signature verification is successful.
+
+### Implementation Guidance:
+
+* For detailed instructions on signature verification, refer to the following guides in this section.
+
+* Ensure you are using the correct, official public key from Chaos Labs to avoid any security risks.
+
+### Security Best Practices:
+
+* Regularly verify and update your implementation to align with the latest security practices.
+
+* Report any discrepancies or security concerns to Chaos Labs immediately.

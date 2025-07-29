@@ -1,0 +1,40 @@
+---
+title: "Get Price(s) By Timestamp"
+openapi: GET /prices
+---
+
+## Using the /prices Endpoint
+
+The /prices endpoint allows you to retrieve price data for multiple feeds with various options. Here are the main use cases and how to utilize them:
+
+### 1. Get Latest Prices
+
+To get the latest prices for one or more feeds:
+
+`GET /prices?feedIds=BTCUSD,ETHUSD`
+
+This will return the most recent prices for the specified feeds.
+
+### 2. Get Historical Prices by Timestamp
+
+To retrieve prices at a specific point in time:
+
+`GET /prices?feedIds=BTCUSD,ETHUSD×tamp=1625097600`
+
+This will return the prices for the specified feeds at the given Unix timestamp (in seconds).
+
+### 3. Get Price Range
+
+To fetch prices within a specific time range:
+
+`GET /prices?feedIds=BTCUSD,ETHUSD&from_timestamp=1625011200`
+
+This will return prices from the specified from\_timestamp up to the current time. The API will return up to 100 prices per feed.
+
+### Query Parameters
+
+* `feedIds` (required): Comma-separated list of feed IDs (e.g., BTCUSD,ETHUSD)
+
+* `timestamp` (optional): Unix timestamp in seconds for historical price data
+
+* `from_timestamp` (optional): Start Unix timestamp in seconds for a range of price data

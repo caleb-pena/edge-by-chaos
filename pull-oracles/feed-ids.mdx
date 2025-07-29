@@ -1,0 +1,61 @@
+---
+title: "Feed IDs"
+---
+
+The Edge Oracle provides a diverse range of price feeds, offering real-time and accurate data for various crypto assets.
+
+## Available Feeds
+
+The Edge Oracle currently supports the following price feeds and more:
+
+| Feed ID   | Base Asset | Quote Asset | Underlying Market |
+| --------- | ---------- | ----------- | ----------------- |
+| `BTCUSD`  | Bitcoin    | US Dollar   | BTC/USD           |
+| `ETHUSD`  | Ethereum   | US Dollar   | ETH/USD           |
+| `SOLUSD`  | Solana     | US Dollar   | SOL/USD           |
+| `USDTUSD` | Tether     | US Dollar   | USDT/USD          |
+| `USDCUSD` | USD Coin   | US Dollar   | USDC/USD          |
+
+[View List of Pull Oracle Feeds](https://edgebychaos.com/price-feeds?feedType=pull)
+
+***
+
+## Feed Characteristics
+
+Each feed provided by Edge shares the following characteristics:
+
+* **Update Frequency**: Prices are updated multiple times per second, ensuring near real-time data.
+
+* **Cryptographic Signatures**: Each price update includes a cryptographic signature for on-chain verification.
+
+* **Anomaly Detection**: Built-in outlier detection to flag and mitigate potential pricing anomalies.
+
+* **Historical Data**: Access to historical price data for each feed.
+
+## Feed-Specific Details
+
+## Using the Feeds
+
+To access these feeds, you can use the following API endpoints:
+
+1. Get the latest price: `GET /prices/:feedId/latest`
+
+2. Get historical prices: `GET /prices?feedIds=feedId1,feedId2×tamp=1234567890`
+
+Replace `:feedId` with the desired feed ID (e.g., BTCUSD, ETHUSD, etc.).
+
+## Feed Reliability and Security
+
+All feeds provided by the Edge Oracle undergo rigorous verification processes:
+
+* **Multi-Source Aggregation**: Prices are aggregated from multiple reputable sources to ensure accuracy.
+
+* **Consensus Mechanism**: A robust consensus algorithm is employed to validate prices across the oracle network.
+
+* **Continuous Monitoring**: Our risk engine continuously monitors all feeds for potential anomalies or manipulations.
+
+## Adding New Feeds
+
+The Edge Oracle is continuously expanding its offerings. If you require a feed that is not currently listed, please contact the Chaos Labs team to discuss the possibility of adding new asset pairs.
+
+By leveraging these feeds, protocols can ensure they have access to reliable, secure, and up-to-date price information, critical for maintaining the integrity and efficiency of decentralized finance applications.

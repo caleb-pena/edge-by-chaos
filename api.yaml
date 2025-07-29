@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  title: Oracle API
+  version: 1.0.0
+  description: API for retrieving price data from the Oracle service
+
+servers:
+  - url: https://oracle.chaoslabs.co
+
+paths:
+  /prices/{feedId}/latest:
+    get:
+      summary: Get latest price for a specific feed
+      parameters:
+        - in: path
+          name: feedId
+          required: true
+          schema:
+            type: string
+          description: The ID of the price feed (e.g., BTCUSD)
+          example: BTCUSD
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: API token for authentication
+          example: <CHAOS_TOKEN>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceResponse'
+              example:
+                feedId: BTCUSD
+                price: 50000000000
+                ts: 1625097600
+                expo: 8
+                signature: a1b2c3d4e5f6g7h8i9j0
+                recoveryId: 1
+        '401':
+          description: Unauthorized
+        '404':
+          description: Price not found
+        '500':
+          description: Internal server error
+
+  /prices:
+    get:
+      summary: Get prices for multiple feeds
+      parameters:
+        - in: query
+          name: feedIds
+          required: true
+          schema:
+            type: string
+          description: Comma-separated list of feed IDs
+          example: BTCUSD,ETHUSD
+        - in: query
+          name: timestamp
+          required: false
+          schema:
+            type: integer
+          description: Timestamp for historical price data (optional)
+          example: 1625097600
+        - in: query
+          name: from_timestamp
+          required: false
+          schema:
+            type: integer
+          description: Start timestamp for range of price data (optional)
+          example: 1625011200
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: API token for authentication
+          example: <CHAOS_TOKEN>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiPriceResponse'
+              example:
+                prices:
+                  - feedId: BTCUSD
+                    price: 50000000000
+                    ts: 1625097600
+                    expo: 8
+                    signature: a1b2c3d4e5f6g7h8i9j0
+                    recoveryId: 1
+                  - feedId: ETHUSD
+                    price: 3000000000
+                    ts: 1625097600
+                    expo: 8
+                    signature: k1l2m3n4o5p6q7r8s9t0
+                    recoveryId: 0
+        '401':
+          description: Unauthorized
+        '404':
+          description: Prices not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    PriceResponse:
+      type: object
+      properties:
+        feedId:
+          type: string
+          example: BTCUSD
+        price:
+          type: integer
+          format: int64
+          example: 50000000000
+        ts:
+          type: integer
+          format: int64
+          description: Timestamp in seconds
+          example: 1625097600
+        expo:
+          type: integer
+          example: 8
+        signature:
+          type: string
+          example: a1b2c3d4e5f6g7h8i9j0
+        recoveryId:
+          type: integer
+          example: 1
+
+    MultiPriceResponse:
+      type: object
+      properties:
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceResponse'

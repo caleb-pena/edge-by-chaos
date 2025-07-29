@@ -1,0 +1,29 @@
+---
+title: "Using An Offchain Service"
+---
+
+<Frame caption="">
+  <img src="/images/8024fb60-image.jpeg" />
+</Frame>
+
+While the Chaos Labs Edge Oracle provides reliable off-chain price data, it's important to note that the off-chain service, which brings this data on-chain, is not part of the Edge Oracle offering. Instead, it should be implemented by the consuming protocol to suit their specific needs. This approach allows for greater flexibility and customization in how and when data is brought on-chain.
+
+## **Offhcain Service Implementation Guide**
+
+As a consuming protocol, you should create a off-chain Service that interacts with both the Chaos Labs Edge API and your own smart contracts. Here's how you can approach this:
+
+1. **Event Emission from Your Smart Contract**:
+
+   Your protocol's smart contract should emit an event (e.g., `UpdateRequired`) when it needs fresh price data. This could be based on time elapsed, price deviation thresholds, or other protocol-specific conditions.
+
+2. **Off-chain Service Setup**:
+
+   Create a service that listens for these events from your smart contract. When an event is detected, the service should:
+
+   a) Query the Chaos Labs Edge Oracle API for the latest price data
+
+   b) Submit a transaction to update the price in your smart contract
+
+3. **Smart Contract Update Logic**:
+
+   Implement functions in your smart contract to receive and verify the price updates from your off-chain service.

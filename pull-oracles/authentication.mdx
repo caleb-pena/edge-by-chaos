@@ -1,0 +1,18 @@
+---
+title: "Authentication"
+---
+
+## Base URLs
+
+* Staging: `https://oracle-staging.chaoslabs.co`
+
+* Production: `https://oracle.chaoslabs.co`
+
+## Authentication
+
+The API uses token-based authentication via the Authorization header. Please contact the Chaos Labs' team for access to an Authorization token.
+
+```sh
+curl --location 'https://oracle.chaoslabs.co/prices/BTCUSD/latest' \
+--header 'Authorization: your-token-here' 
+```

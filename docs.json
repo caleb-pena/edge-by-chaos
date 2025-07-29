@@ -1,55 +1,73 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Edge by Chaos Labs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#C4FF80",
+    "light": "#C4FF80",
+    "dark": "#C4FF80"
   },
-  "favicon": "/favicon.svg",
+  "fonts": {
+    "heading": {
+      "family": "Inter"
+    },
+    "body": {
+      "family": "Inter"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
+  },
+  "favicon": "/edge-favicon.png",
   "navigation": {
     "tabs": [
       {
         "tab": "Guides",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Getting Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "getting-started/node-operators"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Pull Oracles",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
+              "pull-oracles/publish-your-docs",
+              "pull-oracles/authentication",
+              "pull-oracles/feed-ids",
+              {
+                "group": "REST API",
+                "pages": [
+                  "pull-oracles/rest-api",
+                  "pull-oracles/rest-api/price-schema",
+                  "pull-oracles/rest-api/get-price-s-by-timestamp",
+                  "pull-oracles/rest-api/get-latest-price-s"
+                ]
+              },
+              "pull-oracles/websocket-stream"
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Push Oracles",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "push-oracles/overview",
+              "push-oracles/feed-addresses"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/signature-verification",
+              "guides/using-an-offchain-service",
+              "guides/faqs",
+              "risk-oracles"
             ]
           }
         ]
@@ -58,45 +76,34 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "anchor": "News",
+          "href": "https://chaoslabs.xyz/news",
           "icon": "newspaper"
         }
       ]
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/edge-light.png",
+    "dark": "/logo/edge-dark.png"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Contact Us",
+        "href": "https://chaoslabs.xyz/contact-us"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Login",
+      "href": "https://edgebychaos.com/home"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://twitter.com/chaos_labs",
+      "linkedin": "https://linkedin.com/company/chaos-labs-xyz"
     }
   }
 }

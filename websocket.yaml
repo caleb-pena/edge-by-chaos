@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: Price Streaming API
+  version: '1.0.0'
+  description: |
+    This API allows clients to connect via WebSocket to stream price data for specified feed IDs.
+servers:
+  - url: wss://oracle-staging.chaoslabs.co
+paths:
+  /prices/stream:
+    get:
+      summary: Stream price data
+      description: Opens a WebSocket connection to stream price data for the specified feed IDs.
+      parameters:
+        - name: feedIds
+          in: query
+          description: Comma-separated list of feed IDs to stream prices for.
+          required: true
+          schema:
+            type: string
+          example: btcusd,ethusd,solusd,usdcusd,usdtusd,arbusd
+        - name: Authorization
+          in: header
+          description: Your API key for authentication.
+          required: true
+          schema:
+            type: string
+          example: YOUR_API_KEY
+      responses:
+        '101':
+          description: Switching Protocols - WebSocket handshake successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceData'
+              examples:
+                example1:
+                  summary: Example Price Data
+                  value:
+                    feedId: "ETHUSD"
+                    price: 244036499999
+                    ts: 1728484295
+                    expo: -8
+                    signature: "2dcdb6a81ca320ce2379718e3fc72e9ec15243caf709cd0602ef81b7f3c492162852c947537d8f8f2c10959492e4761fa3e5cbe8f25db88a183e507fc377ac3c"
+                    recoveryId: 0
+      security:
+        - apiKeyAuth: []
+      x-websocket:
+        action: subscribe
+components:
+  schemas:
+    PriceData:
+      type: object
+      properties:
+        feedId:
+          type: string
+          description: The ID of the price feed.
+          example: "ETHUSD"
+        price:
+          type: integer
+          description: The current price, represented as an integer in (price * 10^(-expo)) format.
+          example: 244036499999
+        ts:
+          type: integer
+          description: A timestamp of the price at the moment it was fetched, measured in seconds since the UNIX epoch.
+          example: 1728484295
+        expo:
+          type: integer
+          description: The exponent used to scale the price.
+          example: -8
+        signature:
+          type: string
+          description: A signature for validating the authenticity of the price data.
+          example: "2dcd......ac3c"
+        recoveryId:
+          type: integer
+          description: The recovery ID used in signature recovery.
+          example: 0
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization

@@ -1,0 +1,17 @@
+---
+title: "System Architecture"
+---
+
+1. **Exchanges**: Multiple exchanges providing raw price data.
+
+2. **Edge Protocol**: Decentralized nodes collecting and validating data, with a leader node coordinating consensus.
+
+3. **API Layer**: REST API endpoint and WebSocket for data distribution.
+
+4. **Blockchain**: Smart contracts on EVM-compatible chains or Solana consuming the oracle data.
+
+5. **Client Applications**: DApps and TradingView integrations utilizing the oracle data.
+
+The flow shows how data is collected from various sources, processed by the oracle network, and then made available to client applications and on-chain smart contracts through the API layer.
+
+This architecture ensures decentralization, reliability, and real-time data provision for DeFi applications while allowing for easy integration and on-chain verification.

@@ -1,0 +1,29 @@
+---
+title: "Price Schema"
+---
+
+The Chaos Labs Edge Oracle API returns data in a consistent JSON format. Understanding this schema is essential for adequately integrating the oracle data into your dApp. Below is the schema for the price data returned from the available endpoints:
+
+| **Field**  | **Type** | **Description**                                                                       |
+| ---------- | -------- | ------------------------------------------------------------------------------------- |
+| feedId     | string   | The identifier for the price feed (e.g., "ETHUSD")                                    |
+| price      | integer  | The price value, represented as an integer                                            |
+| ts         | integer  | Timestamp of the price update in Unix milliseconds                                    |
+| expo       | integer  | Exponent for the price value. The actual price is calculated as `price * (10 ^ expo)` |
+| signature  | string   | Cryptographic signature for verifying the authenticity of the data                    |
+| recoveryId | integer  | An additional component of the signature used for verification                        |
+
+Example Response:
+
+```json
+{
+  "feedId": "ETHUSD",
+  "price": 200000000000,
+  "ts": 1653509453000,
+  "expo": -8,
+  "signature": "0x1234...5678",
+  "recoveryId": 1
+}
+```
+
+In this example, the actual ETH price would be 2000.00 USD (200000000000 \* 10^-8).
